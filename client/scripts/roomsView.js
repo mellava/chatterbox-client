@@ -7,12 +7,12 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    // TODO: Perform any work which needs to be done
-    // when this view loads.
+    var res = Parse.readAll((data) => Rooms.update(data), (error) => console.log(error));
+
   },
 
   render: function() {
-    // TODO: Render out the list of rooms.
+    Rooms.getRoomsList();
   },
 
   renderRoom: function(roomname) {
@@ -21,10 +21,12 @@ var RoomsView = {
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
+    // drop down and when someone selects a room from drop down, then render messages from that room
   },
 
   handleClick: function(event) {
     // TODO: Handle the user clicking the "Add Room" button.
+    // updates rooms list
   }
 
 };

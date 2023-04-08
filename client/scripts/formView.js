@@ -16,7 +16,8 @@ var FormView = {
 
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-  
+    Parse.create(event.target, successCB, errorCB = null);
+
     console.log('click!');
   },
 

@@ -4,10 +4,25 @@
 
 var Rooms = {
 
-  // TODO: Define how you want to store the list of rooms
-  _data: null,
+  _data: [],
 
-  // TODO: Define methods which allow you to add rooms, update the list,
-  // mark a room as selected, etc.
+  // TODO: mark a room as selected
+
+  update: function(messagesArr) {
+    messagesArr.forEach((message) => {
+      if (!this._data.includes(message.roomname) && message.roomname) {
+        this._data.push(message.roomname);
+      }
+    });
+  },
+
+  getRoomsList: function() {
+    this._data.forEach((roomname, index) => $('select').append(
+      ($('<option>', {
+        value: index,
+        text: roomname
+      }))
+    ));
+  }
 
 };

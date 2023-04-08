@@ -6,8 +6,8 @@ var MessageView = {
   // here: https://underscorejs.org/#template.
 
   render: _.template(`
-      <div class="chat">
-        <div class="username"><h1>Username:</h1><%-username%></div>
+      <div class="chat" id=<%-index%>> <p>Username</p>
+        <div class="username"><%-username%></div>
         <h2>Roomname:</h2>
         <p><%-roomname%></p>
         <h2>Text:</h2>

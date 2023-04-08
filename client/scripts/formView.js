@@ -4,15 +4,15 @@
 
 var FormView = {
 
-  $form: $('form'),
+  $form: $('#send form'),
 
   initialize: function() {
-    FormView.$form.on('submit', FormView.handleSubmit);
 
     var element = document.getElementById('submit');
-    if (element) {
-      element.addEventListener('click', this.handleSubmit);
-    }
+    element.addEventListener('click', this.handleSubmit);
+    // $('#submit').change(function(event) {
+    //   FormView.handleSubmit(event);
+    // });
   },
 
   handleSubmit: function(event) {
@@ -24,7 +24,7 @@ var FormView = {
 
     var messageData = {username: App.username, text: text, roomname: room};
 
-    Parse.create(messageData, App.fetch, (error) => console.log(error));
+    Parse.create(messageData, () => App.fetch(), (error) => console.log(error));
 
     console.log('click!');
   },

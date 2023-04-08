@@ -6,7 +6,6 @@ var Rooms = {
 
   _data: [],
 
-  // TODO: mark a room as selected
 
   update: function(messagesArr) {
     messagesArr.forEach((message) => {
@@ -17,12 +16,30 @@ var Rooms = {
   },
 
   getRoomsList: function() {
-    this._data.forEach((roomname, index) => $('select').append(
-      ($('<option>', {
-        value: index,
-        text: roomname
-      }))
-    ));
+    var currOptions = document.getElementById('selectRoom').options;
+
+    var currOptionsText = [];
+    for (var i = 0; i < currOptions.length; i++ ) {
+      currOptionsText.push(currOptions[i].innerText);
+    }
+
+    this._data.forEach((roomname, index) => {
+      if (!currOptionsText.includes(roomname)) {
+        $('select').append(
+          ($('<option>', {
+            value: index,
+            text: roomname
+          })));
+      }
+    }
+    );
+  },
+
+  addRoom: function(newRoomname) {
+    if (!this._data.includes(newRoomname)) {
+      this._data.push(newRoomname);
+    }
+    this.getRoomsList();
   }
 
 };

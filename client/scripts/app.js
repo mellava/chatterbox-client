@@ -33,6 +33,7 @@ var App = {
       // and re-render the corresponding views.
       RoomsView.render();
       MessagesView.render();
+
       callback();
     });
   },

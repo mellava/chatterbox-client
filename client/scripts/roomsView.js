@@ -3,12 +3,16 @@
 
 var RoomsView = {
 
-  $button: $('#rooms button'),
-  $select: $('#rooms select'),
+  $button: $('#rooms button'), // for adding new rooms
+  $select: $('#rooms select'), // for selecting an existing room to only see texts from this room
+
 
   initialize: function() {
     var res = Parse.readAll((data) => Rooms.update(data), (error) => console.log(error));
 
+    // document.getElementById('addRoom').addEventListener('click', this.handleClick); // add room
+
+    document.getElementById('selectRoom').addEventListener('onChange', this.handleChange); // select room to see texts from
   },
 
   render: function() {
@@ -17,11 +21,12 @@ var RoomsView = {
 
   renderRoom: function(roomname) {
     // TODO: Render out a single room.
+    MessagesView.render(roomname);
   },
 
   handleChange: function(event) {
-    // TODO: Handle a user selecting a different room.
-    // drop down and when someone selects a room from drop down, then render messages from that room
+    var room = $('#rooms select option:selected').text();
+    RoomsView.renderRoom(room);
   },
 
   handleClick: function(event) {

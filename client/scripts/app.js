@@ -21,6 +21,7 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    setInterval(() => this.fetch(), 20000);
   },
 
   fetch: function(callback = ()=>{}) {
@@ -32,6 +33,7 @@ var App = {
       // and re-render the corresponding views.
       RoomsView.render();
       MessagesView.render();
+      callback();
     });
   },
 

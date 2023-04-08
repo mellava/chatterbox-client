@@ -6,19 +6,26 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    var res = Parse.readAll((data) => Messages.update(data), (error) => console.log(error));
+    var res = Parse.readAll((data) => {
+
+      return Messages.update(data);
+    }, (error) => console.log(error));
   },
 
-  render: function() {
+  render: function(roomname) {
+    this.initialize();
     var res = Messages.retrieve();
+    if (roomname) {
+      this.$chats.empty();
+      res = res.filter((message) => message.roomname === roomname);
+    }
     res.forEach((message) => this.renderMessage(message));
   },
 
   renderMessage: function(message) {
     var chat = MessageView.render(message);
 
-    console.log(chat);
-    this.$chats.append(chat);
+    this.$chats.prepend(chat);
   },
 
   handleClick: function(event) {
